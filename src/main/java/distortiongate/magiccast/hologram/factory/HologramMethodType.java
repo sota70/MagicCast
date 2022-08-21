@@ -1,5 +1,5 @@
 package distortiongate.magiccast.hologram.factory;
 
-public enum HologramMethodCreatorType {
+public enum HologramMethodType {
     DEFAULT
 }

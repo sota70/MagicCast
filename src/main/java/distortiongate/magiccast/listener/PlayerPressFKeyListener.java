@@ -16,7 +16,7 @@ public class PlayerPressFKeyListener implements Listener {
         PlayerStatusStorage playerStatusStorage = PlayerStatusStorage.getInstance();
         Player player = event.getPlayer();
         if (!playerStatusStorage.playerHasStatus(player)) {
-            playerStatusStorage.setPlayerStatus(player, PlayerStateFactory.create(PlayerStateType.NORMAL));
+            playerStatusStorage.setPlayerStatus(player, PlayerStateFactory.create(PlayerStateType.MAGIC_CASTING));
         }
         this.executePlayerStatus(player);
         this.setNextPlayerStatus(player);
