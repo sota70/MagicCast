@@ -1,0 +1,6 @@
+name: Magiccast
+version: '${version}'
+main: distortiongate.magiccast.Magiccast
+api-version: 1.18
+authors: [ sota70 ]
+description: This plugins produces awesome magic casting system
