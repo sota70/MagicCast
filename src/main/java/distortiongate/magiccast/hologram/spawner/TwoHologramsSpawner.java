@@ -2,8 +2,6 @@ package distortiongate.magiccast.hologram.spawner;
 
 import distortiongate.magiccast.hologram.Hologram;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 public class TwoHologramsSpawner implements HologramSpawner {
 
@@ -13,23 +11,33 @@ public class TwoHologramsSpawner implements HologramSpawner {
 
     @Override
     public void spawn(Hologram hologram) {
-        Location baseLoc;
-        Location spawnLoc;
-        Player player = hologram.getOwner();
-        Vector baseVector = player.getLocation().toVector();
-        Vector playerDirection = player.getLocation().getDirection();
-        baseVector = baseVector.add(playerDirection.multiply(1.5));
-        baseVector = baseVector.setY(player.getLocation().getY());
-        baseLoc = baseVector.toLocation(player.getWorld());
+        Hologram hologram1 = hologram.clone();
+        Hologram hologram2 = hologram.clone();
+        Location playerLoc = hologram.getOwner().getLocation();
+        Location tempLoc;
+        double distanceFromPlayer = 1.5;
+        double playerDeg = playerLoc.getYaw();
+        double tempPlayerDeg1 = playerDeg >= 0.0 ? playerDeg : 360.0 + playerDeg;
+        double tempPlayerDeg2 = tempPlayerDeg1 + (tempPlayerDeg1 >= 90.0 ? -90.0 : 270.0);
+        double playerRad = (tempPlayerDeg2 / 360.0) * Math.PI * 2.0;
+        double playerPosX = playerLoc.getX();
+        double playerPosZ = playerLoc.getZ();
+        double spawnPosX = playerPosX - distanceFromPlayer * Math.cos(playerRad);
+        double spawnPosZ = playerPosZ - distanceFromPlayer * Math.sin(playerRad);
+        playerLoc.setX(spawnPosX);
+        playerLoc.setY(playerLoc.getY() + 1.5);
+        playerLoc.setZ(spawnPosZ);
         // hologram1 setup
-        spawnLoc = baseLoc.clone().add(0.0, 2.0, 0.0);
-        hologram.setSpawnLocation(spawnLoc);
-        hologram.spawn();
+        tempLoc = playerLoc.clone();
+        hologram1.setName("0");
+        hologram1.setSpawnLocation(tempLoc);
+        hologram1.spawn();
 
         // hologram2 setup
-        spawnLoc = baseLoc.clone().add(0.0, 0.5, 0.0);
-        hologram.setSpawnLocation(spawnLoc);
-        hologram.spawn();
+        tempLoc = playerLoc.clone().add(0.0, -1.0, 0.0);
+        hologram2.setName("1");
+        hologram2.setSpawnLocation(tempLoc);
+        hologram2.spawn();
     }
 
     public static TwoHologramsSpawner getInstance() {

@@ -3,9 +3,6 @@ package distortiongate.magiccast.state.playerstate;
 import distortiongate.magiccast.hologram.Hologram;
 import distortiongate.magiccast.hologram.factory.HologramFactory;
 import distortiongate.magiccast.hologram.factory.HologramMethodType;
-import distortiongate.magiccast.hologram.method.move.HologramMoveMethod;
-import distortiongate.magiccast.hologram.method.ontouch.HologramOnTouchMethod;
-import distortiongate.magiccast.hologram.method.spawn.HologramSpawnMethod;
 import distortiongate.magiccast.hologram.spawner.HologramSpawner;
 import distortiongate.magiccast.hologram.spawner.HologramSpawnerFactory;
 import distortiongate.magiccast.hologram.spawner.HologramSpawnerType;
@@ -21,7 +18,7 @@ public class PlayerMagicCastingMode implements PlayerState {
     @Override
     public void execute(Player player) {
         HologramSpawner hologramSpawner = HologramSpawnerFactory.create(HologramSpawnerType.TWO_HOLOGRAMS);
-        Hologram hologram = HologramFactory.create(HologramMethodType.DEFAULT, player, player.getLocation());
+        Hologram hologram = HologramFactory.create(HologramMethodType.DEFAULT, "", player, player.getLocation());
         // put spawn process here
         hologramSpawner.spawn(hologram);
         player.sendMessage(ChatColor.YELLOW + "You are currently on Magic Casting mode");

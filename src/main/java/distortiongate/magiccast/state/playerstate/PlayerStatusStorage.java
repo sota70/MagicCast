@@ -21,6 +21,12 @@ public class PlayerStatusStorage {
         this.playersState.put(player.getUniqueId(), status);
     }
 
+    public void clearPlayerStatus(Player player) {
+        if (this.playerHasStatus(player)) {
+            this.playersState.remove(player.getUniqueId());
+        }
+    }
+
     public boolean playerHasStatus(Player player) {
         return this.playersState.containsKey(player.getUniqueId());
     }

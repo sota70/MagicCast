@@ -1,6 +1,7 @@
 package distortiongate.magiccast.state.playerstate;
 
 import distortiongate.magiccast.PlayerHologramStorage;
+import distortiongate.magiccast.hologram.Hologram;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -17,12 +18,7 @@ public class PlayerNormalMode implements PlayerState {
         if (!playerHologramStorage.playerHasHolograms(player)) {
             return;
         }
-        playerHologramStorage.getHolograms(player).forEach((hologramId) -> {
-            if (hologramId == null) {
-                return;
-            }
-            player.getWorld().getEntity(hologramId).remove();
-        });
+        playerHologramStorage.getHolograms(player).forEach(Hologram::despawn);
         playerHologramStorage.clearHolograms(player);
     }
 

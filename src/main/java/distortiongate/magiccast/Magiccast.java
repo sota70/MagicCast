@@ -1,5 +1,7 @@
 package distortiongate.magiccast;
 
+import distortiongate.magiccast.castaction.PlayerCastActionDisplayer;
+import distortiongate.magiccast.castaction.PlayerCastActionStorage;
 import distortiongate.magiccast.register.EventListenerRegister;
 import distortiongate.magiccast.register.Register;
 import org.bukkit.ChatColor;
@@ -13,6 +15,7 @@ public final class Magiccast extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getLogger().log(Level.INFO, ChatColor.GREEN + "Magic Cast plugin has been enabled");
+        this.setupPlayerActionStorage();
         this.registerComponents();
     }
 
@@ -29,5 +32,9 @@ public final class Magiccast extends JavaPlugin {
         for (Register register : registers) {
             register.register();
         }
+    }
+
+    private void setupPlayerActionStorage() {
+        PlayerCastActionStorage.getInstance().addObserver(PlayerCastActionDisplayer.getInstance());
     }
 }
