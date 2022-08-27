@@ -1,7 +1,10 @@
 package distortiongate.magiccast.register;
 
 import distortiongate.magiccast.Magiccast;
-import distortiongate.magiccast.listener.*;
+import distortiongate.magiccast.listener.PlayerClickHologramListener;
+import distortiongate.magiccast.listener.PlayerLeaveListener;
+import distortiongate.magiccast.listener.PlayerMoveListener;
+import distortiongate.magiccast.listener.PlayerPressFKeyListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 

@@ -15,10 +15,20 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
+    maven {
+        name = 'phoenix'
+        url = 'https://nexus.phoenixdvpt.fr/repository/maven-public/'
+    }
+    maven {
+        name = 'Lumine Releases'
+        url = 'https://mvn.lumine.io/repository/maven-public/'
+    }
 }
 
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT'
+    compileOnly 'net.Indyuce:MMOCore-API:1.9.5-SNAPSHOT'
+    compileOnly 'io.lumine:MythicLib-dist:1.4.1-SNAPSHOT'
 }
 
 def targetJavaVersion = 17

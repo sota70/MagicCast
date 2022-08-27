@@ -1,6 +1,6 @@
 package distortiongate.magiccast.hologram.method.spawn;
 
-import distortiongate.magiccast.PlayerHologramStorage;
+import distortiongate.magiccast.hologram.PlayerHologramStorage;
 import distortiongate.magiccast.hologram.Hologram;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -36,7 +36,8 @@ public class DefaultHologramSpawnMethod implements HologramSpawnMethod {
         armorStand.setSmall(true);
         armorStand.setInvisible(true);
         armorStand.setGravity(false);
-        armorStand.setItem(EquipmentSlot.CHEST, new ItemStack(Material.DIAMOND_CHESTPLATE));
+        armorStand.setItem(EquipmentSlot.HEAD, new ItemStack(Material.BOOK));
+        // armorStand.setItem(EquipmentSlot.CHEST, new ItemStack(Material.DIAMOND_CHESTPLATE));
         // make armor stand look at the player
         playerDeg = playerDeg >= 0 ? playerDeg - 180 : playerDeg + 180;
         spawnLoc.setYaw(playerDeg);

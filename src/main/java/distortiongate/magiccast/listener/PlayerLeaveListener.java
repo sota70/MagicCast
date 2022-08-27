@@ -1,7 +1,8 @@
 package distortiongate.magiccast.listener;
 
-import distortiongate.magiccast.PlayerHologramStorage;
+import distortiongate.magiccast.castaction.PlayerCastActionStorage;
 import distortiongate.magiccast.hologram.Hologram;
+import distortiongate.magiccast.hologram.PlayerHologramStorage;
 import distortiongate.magiccast.state.playerstate.PlayerStatusStorage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,11 +16,13 @@ public class PlayerLeaveListener implements Listener {
         Player player = event.getPlayer();
         PlayerHologramStorage playerHologramStorage = PlayerHologramStorage.getInstance();
         PlayerStatusStorage playerStatusStorage = PlayerStatusStorage.getInstance();
+        PlayerCastActionStorage playerCastActionStorage = PlayerCastActionStorage.getInstance();
         playerStatusStorage.clearPlayerStatus(player);
         if (!playerHologramStorage.playerHasHolograms(player)) {
             return;
         }
         playerHologramStorage.getHolograms(player).forEach(Hologram::despawn);
         playerHologramStorage.clearHolograms(player);
+        playerCastActionStorage.clearAction(player);
     }
 }

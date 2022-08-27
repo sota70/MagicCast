@@ -1,6 +1,5 @@
-package distortiongate.magiccast;
+package distortiongate.magiccast.hologram;
 
-import distortiongate.magiccast.hologram.Hologram;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -47,14 +46,4 @@ public class PlayerHologramStorage {
         }
         return true;
     }
-
-//    public boolean playerHasHolograms(Player player) {
-//        if (!this.playerHolograms.containsKey(player.getUniqueId())) {
-//            return false;
-//        }
-//        if (this.playerHolograms.get(player.getUniqueId()).size() < 1) {
-//            return false;
-//        }
-//        return true;
-//    }
 }

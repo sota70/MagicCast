@@ -5,6 +5,11 @@ import distortiongate.magiccast.state.playerstate.PlayerStateFactory;
 import distortiongate.magiccast.state.playerstate.PlayerStateType;
 import distortiongate.magiccast.state.playerstate.PlayerStatusStorage;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,7 +21,14 @@ public class PlayerPressFKeyListener implements Listener {
     public void onPressedF(PlayerSwapHandItemsEvent event) {
         PlayerStatusStorage playerStatusStorage = PlayerStatusStorage.getInstance();
         Player player = event.getPlayer();
+        Block blockBelowPlayer = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+        Block blockOnGround = this.getBlockOnGround(blockBelowPlayer);
+        double distanceFromGround = blockOnGround.getLocation().distance(player.getLocation());
         if (player.getGameMode() != GameMode.ADVENTURE) {
+            return;
+        }
+        if (distanceFromGround >= 1.5) {
+            player.sendMessage("You are in the air");
             return;
         }
         if (!playerStatusStorage.playerHasStatus(player)) {
@@ -24,6 +36,13 @@ public class PlayerPressFKeyListener implements Listener {
         }
         this.setNextPlayerStatus(player);
         this.executePlayerStatus(player);
+    }
+
+    private Block getBlockOnGround(Block block) {
+        if (block.getType() != Material.AIR) {
+            return block;
+        }
+        return this.getBlockOnGround(block.getRelative(BlockFace.DOWN));
     }
 
     private void executePlayerStatus(Player player) {

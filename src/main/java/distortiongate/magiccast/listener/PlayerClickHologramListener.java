@@ -1,6 +1,6 @@
 package distortiongate.magiccast.listener;
 
-import distortiongate.magiccast.PlayerHologramStorage;
+import distortiongate.magiccast.hologram.PlayerHologramStorage;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +24,7 @@ public class PlayerClickHologramListener implements Listener {
                 return;
             }
             hologram.onTouch();
+            event.setCancelled(true);
         });
     }
 }
