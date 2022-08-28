@@ -2,6 +2,7 @@ package distortiongate.magiccast;
 
 import distortiongate.magiccast.castaction.PlayerCastActionDisplayer;
 import distortiongate.magiccast.castaction.PlayerCastActionStorage;
+import distortiongate.magiccast.castaction.PlayerMagicCaster;
 import distortiongate.magiccast.register.CommandRegister;
 import distortiongate.magiccast.register.EventListenerRegister;
 import distortiongate.magiccast.register.Register;
@@ -43,6 +44,7 @@ public final class Magiccast extends JavaPlugin {
     }
 
     private void setupPlayerActionStorage() {
-        PlayerCastActionStorage.getInstance().addObserver(PlayerCastActionDisplayer.getInstance());
+        PlayerCastActionStorage storage = PlayerCastActionStorage.getInstance();
+        storage.addObserver(PlayerCastActionDisplayer.getInstance());
     }
 }

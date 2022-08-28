@@ -1,10 +1,7 @@
 package distortiongate.magiccast.register;
 
 import distortiongate.magiccast.Magiccast;
-import distortiongate.magiccast.listener.PlayerClickHologramListener;
-import distortiongate.magiccast.listener.PlayerLeaveListener;
-import distortiongate.magiccast.listener.PlayerMoveListener;
-import distortiongate.magiccast.listener.PlayerPressFKeyListener;
+import distortiongate.magiccast.listener.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -22,7 +19,9 @@ public class EventListenerRegister implements Register {
                 new PlayerPressFKeyListener(),
                 new PlayerMoveListener(),
                 new PlayerLeaveListener(),
-                new PlayerClickHologramListener()
+                new PlayerClickHologramListener(),
+                new PlayerTakeDamageListener(),
+                new PlayerSneakedListener()
         };
         for (Listener listener : listeners) {
             Bukkit.getPluginManager().registerEvents(listener, this.plugin);

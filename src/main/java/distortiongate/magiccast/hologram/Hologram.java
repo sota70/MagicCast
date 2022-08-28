@@ -3,6 +3,7 @@ package distortiongate.magiccast.hologram;
 import distortiongate.magiccast.hologram.method.despawn.HologramDespawnMethod;
 import distortiongate.magiccast.hologram.method.ontouch.HologramOnTouchMethod;
 import distortiongate.magiccast.hologram.method.spawn.HologramSpawnMethod;
+import distortiongate.magiccast.inventorymaincontents.InventoryMainContents;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -17,6 +18,7 @@ public class Hologram {
     private Location spawnLoc;
     private Player owner;
     private UUID hologramId;
+    private InventoryMainContents inventoryMainContents;
 
     public Hologram(
             String name,
@@ -24,7 +26,8 @@ public class Hologram {
             HologramOnTouchMethod onTouchMethod,
             HologramDespawnMethod despawnMethod,
             Player owner,
-            Location spawnLoc
+            Location spawnLoc,
+            InventoryMainContents inventoryMainContents
     ) {
         this.name = name;
         this.spawnMethod = spawnMethod;
@@ -32,6 +35,7 @@ public class Hologram {
         this.despawnMethod = despawnMethod;
         this.owner = owner;
         this.spawnLoc = spawnLoc;
+        this.inventoryMainContents = inventoryMainContents;
     }
 
     public void spawn() {
@@ -54,6 +58,8 @@ public class Hologram {
 
     public void setName(String name) { this.name = name; }
 
+    public void setInventoryMainContents(InventoryMainContents inventoryMainContents) { this.inventoryMainContents = inventoryMainContents; }
+
     public String getName() { return this.name; }
 
     public UUID getHologramId() {
@@ -72,6 +78,8 @@ public class Hologram {
 
     public Player getOwner() { return this.owner; }
 
+    public InventoryMainContents getInventoryMainContents() { return this.inventoryMainContents; }
+
     public Hologram clone() {
         return new Hologram(
                 this.name,
@@ -79,7 +87,8 @@ public class Hologram {
                 this.onTouchMethod,
                 this.despawnMethod,
                 this.owner,
-                this.spawnLoc
+                this.spawnLoc,
+                this.inventoryMainContents
         );
     }
 }
