@@ -9,3 +9,4 @@ commands:
     description: It sets hologram spawn pattern each players have
     usage: "Usage: /[sethologrampattern | sethp] [player name] [hologram pattern]"
     aliases: sethp
+depend: [ProtocolLib]

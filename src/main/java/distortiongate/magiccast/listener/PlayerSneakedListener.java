@@ -1,6 +1,6 @@
 package distortiongate.magiccast.listener;
 
-import distortiongate.magiccast.castaction.PlayerMagicCaster;
+import distortiongate.magiccast.PlayerMagicCaster;
 import distortiongate.magiccast.state.playerstate.PlayerState;
 import distortiongate.magiccast.state.playerstate.PlayerStateFactory;
 import distortiongate.magiccast.state.playerstate.PlayerStateType;

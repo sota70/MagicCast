@@ -1,36 +1,28 @@
-package distortiongate.magiccast.state.playerstate;
+package distortiongate.magiccast.listener;
 
 import distortiongate.magiccast.castaction.PlayerCastActionStorage;
 import distortiongate.magiccast.hologram.Hologram;
 import distortiongate.magiccast.hologram.PlayerHologramStorage;
-import org.bukkit.Sound;
+import distortiongate.magiccast.state.playerstate.PlayerStatusStorage;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class PlayerNormalMode implements PlayerState {
+public class PlayerDeathListener implements Listener {
 
-    private static PlayerNormalMode instance = new PlayerNormalMode();
-
-    private PlayerNormalMode() { }
-
-    @Override
-    public void execute(Player player) {
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+        Player player = event.getPlayer();
         PlayerHologramStorage playerHologramStorage = PlayerHologramStorage.getInstance();
+        PlayerStatusStorage playerStatusStorage = PlayerStatusStorage.getInstance();
         PlayerCastActionStorage playerCastActionStorage = PlayerCastActionStorage.getInstance();
+        playerStatusStorage.clearPlayerStatus(player);
         if (!playerHologramStorage.playerHasHolograms(player)) {
             return;
         }
         playerHologramStorage.getHolograms(player).forEach(Hologram::despawn);
         playerHologramStorage.clearHolograms(player);
         playerCastActionStorage.clearAction(player);
-        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1, 1);
-    }
-
-    @Override
-    public PlayerState getNextState() {
-        return PlayerStateFactory.create(PlayerStateType.MAGIC_CASTING);
-    }
-
-    public static PlayerNormalMode getInstance() {
-        return instance;
     }
 }

@@ -1,15 +1,14 @@
 package distortiongate.magiccast.hologram.spawner;
 
 import distortiongate.magiccast.HologramSpawnLocationCalculator;
-import distortiongate.magiccast.hologram.Hologram;
 import distortiongate.magiccast.hologram.factory.HologramFactory;
-import distortiongate.magiccast.hologram.factory.HologramMethodType;
-import distortiongate.magiccast.inventorymaincontents.InventoryMainContents;
+import distortiongate.magiccast.hologram.method.despawn.HologramDespawnMethodType;
+import distortiongate.magiccast.hologram.method.ontouch.HologramOnTouchMethodType;
+import distortiongate.magiccast.hologram.method.spawn.HologramSpawnMethodType;
 import distortiongate.magiccast.inventorymaincontents.InventoryMainContentsBuilder;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -20,13 +19,19 @@ public class TwoHologramsSpawner implements HologramSpawner {
     private TwoHologramsSpawner() { }
 
     @Override
-    public void spawn(HologramMethodType methodType, Player player) {
+    public void spawn(
+            HologramSpawnMethodType spawnMethodType,
+            HologramOnTouchMethodType onTouchMethodType,
+            HologramDespawnMethodType despawnMethodType, Player player
+    ) {
         Location playerLoc = player.getLocation();
         // hologram0 setup
         Location spawnLoc = HologramSpawnLocationCalculator.calc(playerLoc, 1.5, playerLoc.getYaw());
         spawnLoc.setY(playerLoc.getY() + 1.5);
         HologramFactory.create(
-                methodType,
+                spawnMethodType,
+                onTouchMethodType,
+                despawnMethodType,
                 "A",
                 player,
                 spawnLoc,
@@ -39,7 +44,9 @@ public class TwoHologramsSpawner implements HologramSpawner {
         spawnLoc = HologramSpawnLocationCalculator.calc(playerLoc, 1.5, playerLoc.getYaw());
         spawnLoc.setY(playerLoc.getY() + 0.5);
         HologramFactory.create(
-                methodType,
+                spawnMethodType,
+                onTouchMethodType,
+                despawnMethodType,
                 "B",
                 player,
                 spawnLoc,
@@ -50,11 +57,11 @@ public class TwoHologramsSpawner implements HologramSpawner {
     }
 
     private ItemStack makeCustomHelmet(Material type, int data) {
-        ItemStack chestplate = new ItemStack(type);
-        ItemMeta meta = chestplate.getItemMeta();
+        ItemStack helmet = new ItemStack(type);
+        ItemMeta meta = helmet.getItemMeta();
         meta.setCustomModelData(data);
-        chestplate.setItemMeta(meta);
-        return chestplate;
+        helmet.setItemMeta(meta);
+        return helmet;
     }
 
     public static TwoHologramsSpawner getInstance() {

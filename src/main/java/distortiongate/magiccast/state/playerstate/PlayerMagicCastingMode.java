@@ -1,11 +1,11 @@
 package distortiongate.magiccast.state.playerstate;
 
-import distortiongate.magiccast.hologram.Hologram;
-import distortiongate.magiccast.hologram.factory.HologramFactory;
-import distortiongate.magiccast.hologram.factory.HologramMethodType;
+import distortiongate.magiccast.hologram.method.despawn.HologramDespawnMethodType;
+import distortiongate.magiccast.hologram.method.ontouch.HologramOnTouchMethodType;
+import distortiongate.magiccast.hologram.method.spawn.HologramSpawnMethodType;
 import distortiongate.magiccast.hologram.spawner.HologramSpawner;
 import distortiongate.magiccast.hologram.spawner.PlayerHologramSpawnerStorage;
-import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 public class PlayerMagicCastingMode implements PlayerState {
@@ -18,8 +18,8 @@ public class PlayerMagicCastingMode implements PlayerState {
     public void execute(Player player) {
         HologramSpawner hologramSpawner = PlayerHologramSpawnerStorage.getInstance().getHologramSpawner(player);
         // put spawn process here
-        hologramSpawner.spawn(HologramMethodType.DEFAULT, player);
-        player.sendMessage(ChatColor.YELLOW + "You are currently on Magic Casting mode");
+        hologramSpawner.spawn(HologramSpawnMethodType.PACKET, HologramOnTouchMethodType.DEFAULT, HologramDespawnMethodType.PACKET, player);
+        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
     }
 
     @Override

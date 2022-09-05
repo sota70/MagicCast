@@ -2,7 +2,9 @@ package distortiongate.magiccast.hologram.spawner;
 
 import distortiongate.magiccast.HologramSpawnLocationCalculator;
 import distortiongate.magiccast.hologram.factory.HologramFactory;
-import distortiongate.magiccast.hologram.factory.HologramMethodType;
+import distortiongate.magiccast.hologram.method.despawn.HologramDespawnMethodType;
+import distortiongate.magiccast.hologram.method.ontouch.HologramOnTouchMethodType;
+import distortiongate.magiccast.hologram.method.spawn.HologramSpawnMethodType;
 import distortiongate.magiccast.inventorymaincontents.InventoryMainContentsBuilder;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,14 +19,21 @@ public class FourHologramsSpawner implements HologramSpawner {
     private FourHologramsSpawner() { }
 
     @Override
-    public void spawn(HologramMethodType methodType, Player player) {
-        HologramSpawnerFactory.create(HologramSpawnerType.TWO_HOLOGRAMS).spawn(methodType, player);
+    public void spawn(
+            HologramSpawnMethodType spawnMethodType,
+            HologramOnTouchMethodType onTouchMethodType,
+            HologramDespawnMethodType despawnMethodType,
+            Player player
+    ) {
+        HologramSpawnerFactory.create(HologramSpawnerType.TWO_HOLOGRAMS).spawn(spawnMethodType, onTouchMethodType, despawnMethodType, player);
         Location playerLoc = player.getLocation();
         Location spawnLoc = HologramSpawnLocationCalculator.calc(playerLoc, 1.5, playerLoc.getYaw() - 30.0);
         // hologram2 setup
         spawnLoc.setY(playerLoc.getY() + 1.0);
         HologramFactory.create(
-                methodType,
+                spawnMethodType,
+                onTouchMethodType,
+                despawnMethodType,
                 "C",
                 player,
                 spawnLoc,
@@ -37,7 +46,9 @@ public class FourHologramsSpawner implements HologramSpawner {
         spawnLoc = HologramSpawnLocationCalculator.calc(playerLoc, 1.5, playerLoc.getYaw() + 30.0);
         spawnLoc.setY(playerLoc.getY() + 1.0);
         HologramFactory.create(
-                methodType,
+                spawnMethodType,
+                onTouchMethodType,
+                despawnMethodType,
                 "D",
                 player,
                 spawnLoc,

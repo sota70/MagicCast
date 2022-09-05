@@ -10,7 +10,6 @@ public class PlayerCastActionDisplayer implements PlayerCastActionStorageObserve
 
     @Override
     public void handle(PlayerCastActionStorage storage, Player player) {
-        player.sendMessage("Action: " + storage.getAction(player));
         player.sendTitle(" ", storage.getAction(player));
     }
 

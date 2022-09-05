@@ -8,7 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
-// TODO: Needs packet listener to listen rightclicking armorstands
+
 public class PlayerClickHologramListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)

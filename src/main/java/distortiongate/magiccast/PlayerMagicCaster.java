@@ -1,6 +1,6 @@
-package distortiongate.magiccast.castaction;
+package distortiongate.magiccast;
 
-import distortiongate.magiccast.Magiccast;
+import distortiongate.magiccast.castaction.PlayerCastActionStorage;
 import distortiongate.magiccast.skillnameloader.SkillIdLoaderFactory;
 import distortiongate.magiccast.skillnameloader.SkillIdLoaderType;
 import net.Indyuce.mmocore.api.MMOCoreAPI;

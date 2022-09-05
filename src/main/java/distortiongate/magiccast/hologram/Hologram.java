@@ -52,9 +52,7 @@ public class Hologram {
         this.spawnLoc = spawnLoc;
     }
 
-    public void setHologramId(UUID hologramId) {
-        this.hologramId = hologramId;
-    }
+    public void setHologramId(UUID hologramId) { this.hologramId = hologramId; }
 
     public void setName(String name) { this.name = name; }
 
@@ -62,9 +60,7 @@ public class Hologram {
 
     public String getName() { return this.name; }
 
-    public UUID getHologramId() {
-        return this.hologramId;
-    }
+    public UUID getHologramId() { return this.hologramId; }
 
     public Location getSpawnLocation() {
         return this.spawnLoc;

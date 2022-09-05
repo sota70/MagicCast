@@ -21,9 +21,6 @@ public class SkillIdLoaderWithConfig implements SkillIdLoader {
         String skillId = "";
         try {
             config.load(new File(plugin.getDataFolder(), className + ".yml"));
-            System.out.println("Config path: " + plugin.getDataFolder() + "//" + className + ".yml");
-            System.out.println("Action: " + castAction);
-            System.out.println("SkillId from action: " + config.getString(castAction));
             skillId = config.getString(castAction);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();

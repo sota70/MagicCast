@@ -1,9 +1,11 @@
 package distortiongate.magiccast.listener;
 
+import distortiongate.magiccast.Magiccast;
 import distortiongate.magiccast.state.playerstate.PlayerState;
 import distortiongate.magiccast.state.playerstate.PlayerStateFactory;
 import distortiongate.magiccast.state.playerstate.PlayerStateType;
 import distortiongate.magiccast.state.playerstate.PlayerStatusStorage;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +15,8 @@ public class PlayerTakeDamageListener implements Listener {
 
     @EventHandler
     public void onTakingDamage(EntityDamageEvent event) {
+        FileConfiguration settingsConfig = Magiccast.getInstance().getConfig();
+        boolean cancelWhenTakeDamage = settingsConfig.getBoolean("cancel-casting-when-take-damage");
         Player player;
         PlayerState playerState;
         PlayerStatusStorage playerStatusStorage = PlayerStatusStorage.getInstance();
@@ -22,6 +26,9 @@ public class PlayerTakeDamageListener implements Listener {
         player = (Player)event.getEntity();
         playerState = playerStatusStorage.getPlayerStatus(player);
         if (playerState != PlayerStateFactory.create(PlayerStateType.MAGIC_CASTING)) {
+            return;
+        }
+        if (!cancelWhenTakeDamage) {
             return;
         }
         this.setNextPlayerStatus(player);

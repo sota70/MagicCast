@@ -21,7 +21,8 @@ public class EventListenerRegister implements Register {
                 new PlayerLeaveListener(),
                 new PlayerClickHologramListener(),
                 new PlayerTakeDamageListener(),
-                new PlayerSneakedListener()
+                new PlayerSneakedListener(),
+                new PlayerDeathListener()
         };
         for (Listener listener : listeners) {
             Bukkit.getPluginManager().registerEvents(listener, this.plugin);

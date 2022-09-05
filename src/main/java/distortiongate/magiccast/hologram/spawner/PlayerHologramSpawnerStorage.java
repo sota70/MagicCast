@@ -25,6 +25,5 @@ public class PlayerHologramSpawnerStorage {
 
     public boolean playerHasHologramSpawner(Player player) { return this.playerHologramSpawner.containsKey(player); }
 
-
     public static PlayerHologramSpawnerStorage getInstance() { return instance; }
 }

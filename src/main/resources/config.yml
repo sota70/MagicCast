@@ -1,0 +1,3 @@
+cancel-casting-when-take-damage: true
+casting-blacklist:
+  - 武具技巧師
